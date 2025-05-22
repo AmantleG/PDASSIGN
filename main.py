@@ -96,28 +96,35 @@ def load_data(file):
 
 # Load preprocessing pipeline and model
 
+import os
+import gdown
+import joblib
+import streamlit as st
+
 @st.cache_resource
 def load_model_and_preprocessor():
     # Download model file if it doesn't exist
     model_path = "random_forest_model.pkl"
     model_file_id = "1llyVyb8VpRpBmfBnqkdjDE7FiH5jCWB5"
     model_url = f"https://drive.google.com/uc?id={model_file_id}"
-
+    
     if not os.path.exists(model_path):
         gdown.download(model_url, model_path, quiet=False)
 
-    # Download preprocessor file if it doesn't exist
+    # Download preprocessor if it doesn't exist
     preprocessor_path = "preprocessing_pipeline.pkl"
-    preprocessor_file_id = "1nY_12345EXAMPLEID"  # Replace with actual file ID
+    preprocessor_file_id = "1abcDEFgHijKLMNOPQRstuvwXYz123456"  # replace with correct ID
     preprocessor_url = f"https://drive.google.com/uc?id={preprocessor_file_id}"
-
+    
     if not os.path.exists(preprocessor_path):
         gdown.download(preprocessor_url, preprocessor_path, quiet=False)
 
-    # Load both from disk
+    # Load after files are confirmed to exist
     preprocessor = joblib.load(preprocessor_path)
     model = joblib.load(model_path)
+
     return preprocessor, model
+
 
 
 preprocessor, model = load_model_and_preprocessor()
