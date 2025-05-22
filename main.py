@@ -81,7 +81,7 @@ def login_form():
 # --- Load and clean data ---
 @st.cache_data
 def load_data(file):
-    df = pd.read_csv(file)
+    df = pd.read_csv(file, compression='gzip')
     df['User Agent'].fillna("Unknown", inplace=True)
     df['User ID'].fillna("Anonymous", inplace=True)
     df['Error Message'].fillna("None", inplace=True)
