@@ -1,0 +1,12 @@
+[server]
+maxUploadSize = 300
+headless=true
+runOnSave=true
+fileWatcherType="poll"
+
+[theme]
+backgroundColor="#f5f5f5"
+textColor="#333333"
+primaryColor="#2980b9"  # Using the navbar hover color as a subtle primary accent
+secondaryBackgroundColor="#ffffff" # For elements like the sidebar (can adjust)
+font="sans serif"
