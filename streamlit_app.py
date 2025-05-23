@@ -84,7 +84,7 @@ def login_form():
 @st.cache_data
 def load_data(file):
     if file.name.endswith('.gz'):
-        with gzip.open(file, 'rt' as f:
+        with gzip.open(file, 'rt') as f:
             df= pd.read_csv(f)
     else:
         df = pd.read_csv(file)
