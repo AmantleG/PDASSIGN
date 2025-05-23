@@ -6,6 +6,7 @@ import bcrypt
 import os 
 import joblib
 import gdown
+import gzip
 from datetime import datetime 
 
 
@@ -82,7 +83,13 @@ def login_form():
 # --- Load and clean data ---
 @st.cache_data
 def load_data(file):
-    df = pd.read_csv(file)
+    if file.name.endswith('.gz'):
+        with gzip.open(file, 'rt' as f:
+            df= pd.read_csv(f)
+    else:
+        df = pd.read_csv(file)
+        
+    
     df['User Agent'].fillna("Unknown", inplace=True)
     df['User ID'].fillna("Anonymous", inplace=True)
     df['Error Message'].fillna("None", inplace=True)
@@ -275,7 +282,7 @@ def main():
 
     # --- Upload Data ---
     st.sidebar.markdown("### 📁 Upload Data")
-    uploaded_file = st.sidebar.file_uploader("Choose a CSV file", type="csv")
+    uploaded_file = st.sidebar.file_uploader("Choose a CSV or GZIP file", type=["csv", gz])
     if uploaded_file is not None:
         st.session_state["data"] = load_data(uploaded_file)
 
