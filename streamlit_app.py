@@ -282,7 +282,7 @@ def main():
 
     # --- Upload Data ---
     st.sidebar.markdown("### 📁 Upload Data")
-    uploaded_file = st.sidebar.file_uploader("Choose a CSV or GZIP file", type=["csv", gz])
+    uploaded_file = st.sidebar.file_uploader("Choose a CSV or GZIP file", type=["csv", "gz"])
     if uploaded_file is not None:
         st.session_state["data"] = load_data(uploaded_file)
 
